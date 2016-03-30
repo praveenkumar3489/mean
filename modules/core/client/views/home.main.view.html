@@ -1,0 +1,35 @@
+<html>
+<title>My Pet Project</title>
+<head></head>
+<body>
+  <div class="col-md-3">
+    Filters
+    <ul>
+      <li>
+          <p>Name: {{position.name}}</p>
+          <p>Minimum Price: {{position.minCost}}</p>
+          <p>Maximum Price: {{position.maxCost}}</p>
+          <slider floor="100" ceiling="1000" step="50" precision="2" ng-model-low="position.minCost" ng-model-high="position.maxCost"></slider>
+      </li>
+    </ul>
+    <ul>
+      <li ng-model="selectedCategory" ng-repeat="category in categories">
+          <input type="checkbox" value="{{category}}">
+              <a href="#" ng-click="catSelect(category)">{{category}}</a>
+      </li>
+    </ul>
+    <p> {{selectedCategory}} </p>
+  </div>
+  <div class="col-md-8">
+    {{items}}
+    <ul>
+      <li class="col-md-3 item-container" ng-if="(item.cost<=position.maxCost) && (position.minCost<=item.cost)" ng-repeat="item in items">
+            <img src="{{item.img}}"/>
+            <p>Name: {{item.name}}</p>
+            <p>Price: {{item.cost}}</p>
+            <p>Category: {{item.category}}</p>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>
